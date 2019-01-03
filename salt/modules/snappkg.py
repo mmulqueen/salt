@@ -27,18 +27,17 @@ from salt.ext import six
 
 log = logging.getLogger(__name__)
 
-# # Define the module's virtual name
-# __virtualname__ = 'pkg'
-#
-#
-# def __virtual__():
-#     '''
-#     Confine this module to systems with snap installed.
-#     '''
-#
-#     if salt.utils.path.which('snap'):
-#         return __virtualname__
-#     return (False, 'The snap module could not be loaded: snap not found')
+__virtualname__ = 'snappkg'
+
+
+def __virtual__():
+    '''
+    Confine this module to systems with snap installed.
+    '''
+
+    if salt.utils.path.which('snap'):
+        return __virtualname__
+    return (False, 'The snap module could not be loaded: snap not found')
 
 
 def list_pkgs(versions_as_list=False, **kwargs):
